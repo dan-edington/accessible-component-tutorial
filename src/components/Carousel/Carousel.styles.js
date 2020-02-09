@@ -4,11 +4,12 @@ import { colors } from '../../styles/variables';
 
 export const CarouselContainer = styled.section`
   display: block;
-  margin: ${pxToRem(20)};
+  margin: ${pxToRem(20)} auto;
+  width: ${pxToRem(960)};
   overflow: hidden;
 `;
 
-export const CarouselItemsContainer = styled.ul`
+export const SlidesContainer = styled.ul`
   display: flex;
   flex-direction: row;
   overflow: hidden;
@@ -21,36 +22,43 @@ export const CarouselItemsContainer = styled.ul`
   }
 `;
 
-export const CarouselItem = styled.li`
+export const Slide = styled.li`
   display: flex;
   position: relative;
   background-color: ${colors.colorB};
   padding: ${pxToRem(20)};
-  width: calc((100% / ${props => props.totalSlides}) - ${pxToRem(40)});
+  width: calc(100% / ${props => props.totalSlides});
+  height: ${pxToRem(378)};
+
+  &:focus {
+    border: ${pxToRem(2)} solid ${colors.colorA};
+  }
 
   > img {
-    width: ${pxToRem(600)};
-    height: ${pxToRem(338)};
+    flex: 1;
+    justify-self: center;
+    width: 600px;
   }
 `;
 
-export const CarouselItemTextContainer = styled.div`
+export const SlideTextContainer = styled.div`
   padding: ${pxToRem(20)};
+  flex: 1;
 `;
 
-export const CarouselItemTitle = styled.h2`
+export const SlideTitle = styled.h2`
   font-size: ${pxToRem(48)};
   margin-bottom: ${pxToRem(60)};
   color: ${colors.text};
 `;
 
-export const CarouselItemDescription = styled.p`
+export const SlideDescription = styled.p`
   font-size: ${pxToRem(24)};
   margin-bottom: ${pxToRem(60)};
   color: ${colors.text};
 `;
 
-export const CarouselItemCTA = styled.a`
+export const SlideCTA = styled.a`
   display: inline-block;
   text-decoration: none;
   color: ${colors.ctaText};
@@ -78,7 +86,7 @@ export const CarouselButton = styled.button`
   height: ${pxToRem(44)};
   background-color: transparent;
   border: 0;
-  margin-right: 0.5rem;
+  margin-right: ${pxToRem(10)};
   cursor: pointer;
 
   &:last-child {

@@ -23,6 +23,7 @@ time, mark, audio, video {
 	font-size: ${baseFontSize}px;
 	font-family: sans-serif;
 	vertical-align: baseline;
+	box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 

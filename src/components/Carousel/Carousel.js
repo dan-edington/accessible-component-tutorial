@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
   CarouselContainer,
-  CarouselItemsContainer,
-  CarouselItem,
-  CarouselItemTextContainer,
-  CarouselItemTitle,
-  CarouselItemDescription,
-  CarouselItemCTA,
+  SlidesContainer,
+  Slide,
+  SlideTextContainer,
+  SlideTitle,
+  SlideDescription,
+  SlideCTA,
   CarouselControlsContainer,
   CarouselButton,
 } from './Carousel.styles';
@@ -15,22 +15,25 @@ const Carousel = props => {
   const { autoplay = true, delay = 4000, items = [] } = props || {};
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const carouselItemsRef = useRef(null);
+  const currentSlideRef = useRef(null);
   const totalSlides = items.length;
   let slideInterval;
 
   const pauseCarousel = () => setIsPaused(true);
   const unPauseCarousel = () => setIsPaused(false);
 
+  const isCurrent = i => currentSlide === i;
+
   const handleButtonKeyDown = evt => {
     if (evt.keyCode === 13 || evt.keyCode === 32) {
-      setTimeout(() => carouselItemsRef.current.focus(), 0);
+      console.log('aa');
+      setTimeout(() => currentSlideRef.current.focus(), 0);
     }
   };
 
   useEffect(() => {
-    carouselItemsRef.current.addEventListener('focusin', pauseCarousel);
-    carouselItemsRef.current.addEventListener('focusout', unPauseCarousel);
+    currentSlideRef.current.addEventListener('focusin', pauseCarousel);
+    currentSlideRef.current.addEventListener('focusout', unPauseCarousel);
 
     if (autoplay && !isPaused) {
       slideInterval = setInterval(() => {
@@ -41,57 +44,59 @@ const Carousel = props => {
 
     return () => {
       clearInterval(slideInterval);
-      carouselItemsRef.current.removeEventListener('focusin', pauseCarousel);
-      carouselItemsRef.current.removeEventListener('focusout', unPauseCarousel);
+      currentSlideRef.current.removeEventListener('focusin', pauseCarousel);
+      currentSlideRef.current.removeEventListener('focusout', unPauseCarousel);
     };
   });
 
   return (
     <CarouselContainer className="carousel">
-      <CarouselItemsContainer
-        className="carousel__itemsContainer"
-        id="carouselItemsContainer"
+      <SlidesContainer
+        className="carousel__slidesContainer"
+        id="slidesContainer"
         currentSlide={currentSlide}
         totalSlides={totalSlides}
-        tabIndex="0"
-        ref={carouselItemsRef}
+        // ref={currentSlideRef}
       >
-        {items.map((item, i) => (
-          <CarouselItem
-            className="carousel__item"
-            key={i}
-            totalSlides={totalSlides}
-            aria-hidden={currentSlide === i ? 'false' : 'true'}
-            aria-live="polite"
-          >
-            <img src={item.asset.url} alt={item.asset.altText} className="carousel__itemImage" />
-            <CarouselItemTextContainer>
-              <CarouselItemTitle className="carousel__itemTitle">{item.title}</CarouselItemTitle>
-              <CarouselItemDescription className="carousel__itemDescription">
-                {item.description}
-              </CarouselItemDescription>
-              <CarouselItemCTA
-                href={item.cta.url}
-                target="_blank"
-                className="carousel__itemCTA"
-                tabIndex={currentSlide !== i ? -1 : ''}
-              >
-                {item.cta.text}
-              </CarouselItemCTA>
-            </CarouselItemTextContainer>
-          </CarouselItem>
-        ))}
-      </CarouselItemsContainer>
+        {items.map((item, i) => {
+          const refProp = isCurrent() ? { ref: currentSlideRef } : {};
+          return (
+            <Slide
+              className="carousel__slide"
+              key={i}
+              totalSlides={totalSlides}
+              aria-hidden={isCurrent() ? 'false' : 'true'}
+              aria-live="polite"
+              tabIndex={isCurrent() ? 0 : -1}
+              {...refProp}
+            >
+              <img src={item.asset.url} alt={item.asset.altText} className="carousel__slideImage" />
+              <SlideTextContainer>
+                <SlideTitle className="carousel__slideTitle">{item.title}</SlideTitle>
+                <SlideDescription className="carousel__slideDescription">{item.description}</SlideDescription>
+                <SlideCTA
+                  href={item.cta.url}
+                  target="_blank"
+                  className="carousel__slideCTA"
+                  tabIndex={!isCurrent() ? -1 : ''}
+                >
+                  {item.cta.text}
+                </SlideCTA>
+              </SlideTextContainer>
+            </Slide>
+          );
+        })}
+      </SlidesContainer>
       <CarouselControlsContainer className="carousel__controls">
         {items.map((item, i) => (
           <CarouselButton
-            className={currentSlide === i ? 'carousel__controlsButton-selected' : 'carousel__controlsButton'}
+            className={isCurrent() ? 'carousel__controlsButton-selected' : 'carousel__controlsButton'}
             key={i}
-            selected={currentSlide === i}
+            selected={isCurrent()}
             onClick={() => setCurrentSlide(i)}
             onKeyDown={handleButtonKeyDown}
             aria-label={`Go to slide ${i + 1}`}
-            aria-controls="carouselItemsContainer"
+            aria-controls="slidesContainer"
           />
         ))}
       </CarouselControlsContainer>
