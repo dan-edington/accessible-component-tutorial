@@ -1,5 +1,6 @@
 import React from 'react';
 import Carousel from './components/Carousel/Carousel';
+import GlobalStyles from './styles/global.styles';
 
 const carouselData = {
   autoPlay: true,
@@ -64,7 +65,12 @@ const carouselData = {
 };
 
 function App() {
-  return <Carousel />;
+  return (
+    <>
+      <GlobalStyles />
+      <Carousel {...carouselData} />
+    </>
+  );
 }
 
 export default App;
