@@ -3,18 +3,19 @@ import Carousel from './components/Carousel/Carousel';
 import GlobalStyles from './styles/global.styles';
 
 const carouselData = {
-  autoPlay: true,
-  delay: 3000,
+  autoplay: false,
+  delay: 4000,
   items: [
     {
       title: 'Slide 1',
       description: 'Slide 1 description',
       cta: {
         text: 'Slide 1 CTA',
-        url: 'http://www.google.com',
+        url: '#',
       },
       asset: {
         url: 'https://placedog.net/600/338?id=82',
+        altText: 'A photo of a dog',
       },
     },
     {
@@ -22,10 +23,11 @@ const carouselData = {
       description: 'Slide 2 description',
       cta: {
         text: 'Slide 2 CTA',
-        url: 'http://www.google.com',
+        url: '#',
       },
       asset: {
         url: 'https://placedog.net/600/338?id=4',
+        altText: 'A photo of a dog',
       },
     },
     {
@@ -33,10 +35,11 @@ const carouselData = {
       description: 'Slide 3 description',
       cta: {
         text: 'Slide 3 CTA',
-        url: 'http://www.google.com',
+        url: '#',
       },
       asset: {
         url: 'https://placedog.net/600/338?id=58',
+        altText: 'A photo of a dog',
       },
     },
     {
@@ -44,10 +47,11 @@ const carouselData = {
       description: 'Slide 4 description',
       cta: {
         text: 'Slide 4 CTA',
-        url: 'http://www.google.com',
+        url: '#',
       },
       asset: {
         url: 'https://placedog.net/600/338?id=8',
+        altText: 'A photo of a dog',
       },
     },
     {
@@ -55,10 +59,11 @@ const carouselData = {
       description: 'Slide 5 description',
       cta: {
         text: 'Slide 5 CTA',
-        url: 'http://www.google.com',
+        url: '#',
       },
       asset: {
         url: 'https://placedog.net/600/338?id=60',
+        altText: 'A photo of a dog',
       },
     },
   ],

@@ -12,21 +12,27 @@ export const CarouselItemsContainer = styled.ul`
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  width: calc(100% * ${props => props.itemCount});
+  width: calc(100% * ${props => props.totalSlides});
   position: relative;
   left: calc(100% * ${props => props.currentSlide} * -1);
   transition: left 0.5s ease-out;
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 `;
 
 export const CarouselItem = styled.li`
   display: flex;
   position: relative;
-  background-color: ${colors.yellow};
+  background-color: ${colors.colorB};
   padding: ${pxToRem(20)};
-  width: calc((100% / ${props => props.itemCount}) - ${pxToRem(40)});
-`;
+  width: calc((100% / ${props => props.totalSlides}) - ${pxToRem(40)});
 
-export const CarouselItemImage = styled.img``;
+  > img {
+    width: ${pxToRem(600)};
+    height: ${pxToRem(338)};
+  }
+`;
 
 export const CarouselItemTextContainer = styled.div`
   padding: ${pxToRem(20)};
@@ -35,21 +41,28 @@ export const CarouselItemTextContainer = styled.div`
 export const CarouselItemTitle = styled.h2`
   font-size: ${pxToRem(48)};
   margin-bottom: ${pxToRem(60)};
+  color: ${colors.text};
 `;
 
 export const CarouselItemDescription = styled.p`
   font-size: ${pxToRem(24)};
   margin-bottom: ${pxToRem(60)};
+  color: ${colors.text};
 `;
 
 export const CarouselItemCTA = styled.a`
   display: inline-block;
   text-decoration: none;
-  color: ${colors.yellow};
+  color: ${colors.ctaText};
   text-align: center;
   padding: ${pxToRem(14)};
-  background-color: ${colors.pink};
+  background-color: ${colors.colorA};
   border-radius: ${pxToRem(15)};
+
+  &:hover,
+  &:focus {
+    color: ${colors.ctaTextHover};
+  }
 `;
 
 export const CarouselControlsContainer = styled.div`
@@ -77,10 +90,11 @@ export const CarouselButton = styled.button`
     width: ${pxToRem(20)};
     height: ${pxToRem(20)};
     border-radius: ${pxToRem(10)};
-    background-color: ${props => (props.selected ? colors.yellow : colors.pink)};
+    background-color: ${props => (props.selected ? colors.colorB : colors.colorA)};
   }
 
-  &:hover:after {
-    background-color: ${colors.yellow};
+  &:hover:after,
+  &:focus-within:after {
+    background-color: ${colors.colorB};
   }
 `;

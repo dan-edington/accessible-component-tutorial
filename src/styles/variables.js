@@ -1,4 +1,8 @@
 export const colors = {
-  yellow: '#ffff00',
-  pink: '#D6006B',
+  colorA: 'tomato',
+  colorB: 'aquamarine',
+  text: '#2e343b',
+  ctaText: '#292929',
+  ctaTextHover: '#fff',
+  bg: '#4b5555',
 };
