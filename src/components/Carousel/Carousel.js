@@ -17,7 +17,6 @@ const Carousel = props => {
   const [isPaused, setIsPaused] = useState(false);
   const currentSlideRef = useRef(null);
   const totalSlides = items.length;
-  let slideInterval;
 
   const pauseCarousel = () => setIsPaused(true);
   const unPauseCarousel = () => setIsPaused(false);
@@ -26,12 +25,13 @@ const Carousel = props => {
 
   const handleButtonKeyDown = evt => {
     if (evt.keyCode === 13 || evt.keyCode === 32) {
-      console.log('aa');
       setTimeout(() => currentSlideRef.current.focus(), 0);
     }
   };
 
   useEffect(() => {
+    let slideInterval;
+
     currentSlideRef.current.addEventListener('focusin', pauseCarousel);
     currentSlideRef.current.addEventListener('focusout', unPauseCarousel);
 
@@ -56,43 +56,40 @@ const Carousel = props => {
         id="slidesContainer"
         currentSlide={currentSlide}
         totalSlides={totalSlides}
-        // ref={currentSlideRef}
+        tabIndex="0"
+        ref={currentSlideRef}
       >
-        {items.map((item, i) => {
-          const refProp = isCurrent() ? { ref: currentSlideRef } : {};
-          return (
-            <Slide
-              className="carousel__slide"
-              key={i}
-              totalSlides={totalSlides}
-              aria-hidden={isCurrent() ? 'false' : 'true'}
-              aria-live="polite"
-              tabIndex={isCurrent() ? 0 : -1}
-              {...refProp}
-            >
-              <img src={item.asset.url} alt={item.asset.altText} className="carousel__slideImage" />
-              <SlideTextContainer>
-                <SlideTitle className="carousel__slideTitle">{item.title}</SlideTitle>
-                <SlideDescription className="carousel__slideDescription">{item.description}</SlideDescription>
-                <SlideCTA
-                  href={item.cta.url}
-                  target="_blank"
-                  className="carousel__slideCTA"
-                  tabIndex={!isCurrent() ? -1 : ''}
-                >
-                  {item.cta.text}
-                </SlideCTA>
-              </SlideTextContainer>
-            </Slide>
-          );
-        })}
+        {items.map((item, i) => (
+          <Slide
+            className="carousel__slide"
+            key={i}
+            totalSlides={totalSlides}
+            aria-hidden={isCurrent(i) ? 'false' : 'true'}
+            aria-live="polite"
+            // tabIndex={isCurrent(i) ? 0 : -1}
+          >
+            <img src={item.asset.url} alt={item.asset.altText} className="carousel__slideImage" />
+            <SlideTextContainer>
+              <SlideTitle className="carousel__slideTitle">{item.title}</SlideTitle>
+              <SlideDescription className="carousel__slideDescription">{item.description}</SlideDescription>
+              <SlideCTA
+                href={item.cta.url}
+                target="_blank"
+                className="carousel__slideCTA"
+                tabIndex={!isCurrent(i) ? -1 : ''}
+              >
+                {item.cta.text}
+              </SlideCTA>
+            </SlideTextContainer>
+          </Slide>
+        ))}
       </SlidesContainer>
       <CarouselControlsContainer className="carousel__controls">
         {items.map((item, i) => (
           <CarouselButton
-            className={isCurrent() ? 'carousel__controlsButton-selected' : 'carousel__controlsButton'}
+            className={isCurrent(i) ? 'carousel__controlsButton-selected' : 'carousel__controlsButton'}
             key={i}
-            selected={isCurrent()}
+            selected={isCurrent(i)}
             onClick={() => setCurrentSlide(i)}
             onKeyDown={handleButtonKeyDown}
             aria-label={`Go to slide ${i + 1}`}

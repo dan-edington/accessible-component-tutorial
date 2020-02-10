@@ -17,6 +17,9 @@ export const SlidesContainer = styled.ul`
   position: relative;
   left: calc(100% * ${props => props.currentSlide} * -1);
   transition: left 0.5s ease-out;
+  &:focus {
+    border: ${pxToRem(2)} solid ${colors.colorA};
+  }
   @media (prefers-reduced-motion: reduce) {
     transition: none;
   }
@@ -29,10 +32,6 @@ export const Slide = styled.li`
   padding: ${pxToRem(20)};
   width: calc(100% / ${props => props.totalSlides});
   height: ${pxToRem(378)};
-
-  &:focus {
-    border: ${pxToRem(2)} solid ${colors.colorA};
-  }
 
   > img {
     flex: 1;
