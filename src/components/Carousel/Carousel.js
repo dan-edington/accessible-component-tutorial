@@ -65,8 +65,6 @@ const Carousel = props => {
             key={i}
             totalSlides={totalSlides}
             aria-hidden={isCurrent(i) ? 'false' : 'true'}
-            aria-live="polite"
-            // tabIndex={isCurrent(i) ? 0 : -1}
           >
             <img src={item.asset.url} alt={item.asset.altText} className="carousel__slideImage" />
             <SlideTextContainer>
@@ -92,7 +90,7 @@ const Carousel = props => {
             selected={isCurrent(i)}
             onClick={() => setCurrentSlide(i)}
             onKeyDown={handleButtonKeyDown}
-            aria-label={`Go to slide ${i + 1}`}
+            aria-label={`Go to ${item.title}`}
             aria-controls="slidesContainer"
           />
         ))}

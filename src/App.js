@@ -15,19 +15,19 @@ const carouselData = {
       },
       asset: {
         url: 'https://placedog.net/600/338?id=82',
-        altText: 'A white, furry dog called Dave',
+        altText: 'A white, furry dog called Dave.',
       },
     },
     {
       title: 'Bella',
-      description: 'Bella is a bad dog who like cats.',
+      description: 'Bella is a bad dog who likes cats.',
       cta: {
         text: 'Adopt Bella',
         url: '#',
       },
       asset: {
         url: 'https://placedog.net/600/338?id=4',
-        altText: 'A white dog called Bella',
+        altText: 'A white dog called Bella.',
       },
     },
     {
@@ -39,31 +39,31 @@ const carouselData = {
       },
       asset: {
         url: 'https://placedog.net/600/338?id=58',
-        altText: 'Coco, a black and white dog',
+        altText: 'Coco, a black and white dog.',
       },
     },
     {
       title: 'Daisy And Dolly',
-      description: 'These dogs are inseparable',
+      description: 'These dogs are inseparable.',
       cta: {
         text: 'Adopt Daisy & Dolly',
         url: '#',
       },
       asset: {
         url: 'https://placedog.net/600/338?id=8',
-        altText: 'Two fluffy dogs named Daisy and Dolly',
+        altText: 'Two fluffy dogs named Daisy and Dolly.',
       },
     },
     {
       title: 'Benji',
-      description: 'Benji will bite you',
+      description: 'Benji will bite you.',
       cta: {
         text: 'Adopt Benji',
         url: '#',
       },
       asset: {
         url: 'https://placedog.net/600/338?id=60',
-        altText: 'A dog chewing on human flesh',
+        altText: 'A dog chewing on human flesh.',
       },
     },
   ],
