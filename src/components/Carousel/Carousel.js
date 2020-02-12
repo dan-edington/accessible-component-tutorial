@@ -84,7 +84,7 @@ const Carousel = props => {
           </Slide>
         ))}
       </SlidesContainer>
-      <CarouselControlsContainer className="carousel__controls">
+      <CarouselControlsContainer className="carousel__controls" role="group">
         {items.map((item, i) => (
           <CarouselButton
             className={isCurrent(i) ? 'carousel__controlsButton-selected' : 'carousel__controlsButton'}

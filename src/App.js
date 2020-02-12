@@ -7,63 +7,63 @@ const carouselData = {
   delay: 4000,
   items: [
     {
-      title: 'Slide 1',
-      description: 'Slide 1 description',
+      title: 'Dave',
+      description: 'Dave is a good dog who hates cats.',
       cta: {
-        text: 'Slide 1 CTA',
+        text: 'Adopt Dave',
         url: '#',
       },
       asset: {
         url: 'https://placedog.net/600/338?id=82',
-        altText: 'A photo of a dog',
+        altText: 'A white, furry dog called Dave',
       },
     },
     {
-      title: 'Slide 2',
-      description: 'Slide 2 description',
+      title: 'Bella',
+      description: 'Bella is a bad dog who like cats.',
       cta: {
-        text: 'Slide 2 CTA',
+        text: 'Adopt Bella',
         url: '#',
       },
       asset: {
         url: 'https://placedog.net/600/338?id=4',
-        altText: 'A photo of a dog',
+        altText: 'A white dog called Bella',
       },
     },
     {
-      title: 'Slide 3',
-      description: 'Slide 3 description',
+      title: 'Coco',
+      description: 'Coco is a friendly dog who eats chocolate for a laugh.',
       cta: {
-        text: 'Slide 3 CTA',
+        text: 'Adopt Coco',
         url: '#',
       },
       asset: {
         url: 'https://placedog.net/600/338?id=58',
-        altText: 'A photo of a dog',
+        altText: 'Coco, a black and white dog',
       },
     },
     {
-      title: 'Slide 4',
-      description: 'Slide 4 description',
+      title: 'Daisy And Dolly',
+      description: 'These dogs are inseparable',
       cta: {
-        text: 'Slide 4 CTA',
+        text: 'Adopt Daisy & Dolly',
         url: '#',
       },
       asset: {
         url: 'https://placedog.net/600/338?id=8',
-        altText: 'A photo of a dog',
+        altText: 'Two fluffy dogs named Daisy and Dolly',
       },
     },
     {
-      title: 'Slide 5',
-      description: 'Slide 5 description',
+      title: 'Benji',
+      description: 'Benji will bite you',
       cta: {
-        text: 'Slide 5 CTA',
+        text: 'Adopt Benji',
         url: '#',
       },
       asset: {
         url: 'https://placedog.net/600/338?id=60',
-        altText: 'A photo of a dog',
+        altText: 'A dog chewing on human flesh',
       },
     },
   ],
